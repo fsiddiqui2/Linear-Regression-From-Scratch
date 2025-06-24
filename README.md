@@ -54,16 +54,6 @@ The script:
    \hat{y} = b_0 + b_1x
    $$
 
----
-
-## File Structure
-
-```
-linear_regression.py      # Main script containing the LinearModel class
-```
-
----
-
 ## Example
 
 ```bash
@@ -77,13 +67,9 @@ Line of Best Fit: y = 0.0000 + 2.0000x
 R^2: 1.0
 ```
 
----
-
 ## License
 
 This project is licensed under the MIT License.
-
----
 
 ## Author
 
