@@ -7,6 +7,12 @@ This project implements **Linear Regression** using two different approaches:
 
 The project is written in Python and uses only core libraries like `NumPy`, `Pandas`, and `Matplotlib`.
 
+## Demo
+
+<img src="https://github.com/fsiddiqui2/Linear-Regression-From-Scratch/blob/main/images/animation_gd.gif" alt ="sample animation" width="600">
+
+> Animation: Loss decreasing over time as the model converges during training.
+
 ## Project Structure
 
 ```bash
