@@ -21,7 +21,7 @@ The project is written in Python and uses only core libraries like `NumPy`, `Pan
 └── README.md                 # This file
 ````
 
-## ⚙️ Installation
+## Installation
 
 Create a virtual environment and install dependencies:
 
