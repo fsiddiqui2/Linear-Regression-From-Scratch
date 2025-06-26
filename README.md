@@ -1,76 +1,125 @@
-# Linear Regression CLI Tool
+# Linear Regression from Scratch in NumPy
 
-This is a simple Python command-line tool that fits a **simple linear regression model** to a given list of `x` and `y` values and outputs the **line of best fit** and **R² score**. This linear regression is implemented using only **numpy**.
+This project implements **Linear Regression** using two different approaches:
 
-## Features
+- **Gradient Descent**: A numerical optimization method for minimizing Mean Squared Error (MSE).
+- **Ordinary Least Squares (OLS)**: An analytical solution for finding the line of best fit.
 
-- Computes the least squares regression line:  
-  \[
-  y = b_0 + b_1x
-  \]
-- Prints model parameters (`b₀`, `b₁`)
-- Calculates the coefficient of determination (**R²**)
-- Supports command-line arguments for easy use
+The project is written in Python and uses only core libraries like `NumPy`, `Pandas`, and `Matplotlib`.
 
-## Requirements
-
-- Python 3.10+
-- NumPy
-
-Install dependencies (if needed):
+## Project Structure
 
 ```bash
-pip install numpy
+.
+├── linreg_gd.py              # Linear Regression using Gradient Descent
+├── linreg_ols.py             # Linear Regression using Ordinary Least Squares
+├── util.py                   # Utility functions for MSE, R², etc.
+├── test_data/                # Folder containing sample CSV datasets
+├── images/                   # Folder to store plots and animation output
+├── requirements_pip.txt      # Pip requirements file
+├── requirements_conda_mac.txt# Conda requirements file (macOS/arm64)
+└── README.md                 # This file
 ````
+
+## ⚙️ Installation
+
+Create a virtual environment and install dependencies:
+
+### With pip:
+
+```bash
+pip install -r requirements_pip.txt
+```
+
+### With conda (macOS ARM):
+
+```bash
+conda create --name linreg_env --file requirements_conda_mac.txt
+conda activate linreg_env
+```
 
 ## Usage
 
-### Run from the command line:
+### 1. Linear Regression via Gradient Descent
 
 ```bash
-python linear_regression.py --x 1 2 3 4 5 --y 2 4 5 4 5
+python linreg_gd.py \
+    --data_path test_data/data.csv \
+    --lr 0.01 \
+    --max_iter 10000 \
+    --tolerance 1e-6 \
+    --graph_name line_gd.png \
+    --lossplot_name losses_gd.png \
+    --animation_name animation_gd.gif
 ```
 
-### Output:
+This script will:
 
-```
-Line of Best Fit: y = 2.2000 + 0.6000x
-R^2: 0.4800
-```
+* Train a linear model using Gradient Descent
+* Plot the data with the regression line
+* Plot the loss curve over iterations
+* Create an animation of the learning process (if only 1 feature)
 
-## How it Works
-
-The script:
-
-1. Parses `--x` and `--y` values using `argparse`
-2. Computes:
-
-   * Means of `x` and `y`
-   * Slope `b₁` and intercept `b₀`
-   * R² score (model accuracy)
-3. Predicts values using:
-
-   $$
-   \hat{y} = b_0 + b_1x
-   $$
-
-## Example
+### 2. Linear Regression via OLS
 
 ```bash
-python linear_regression.py --x 1 2 3 --y 2 4 6
+python linreg_ols.py \
+    --data_path test_data/data.csv \
+    --graph_name line_ols.png
 ```
 
-Output:
+This script will:
+
+* Fit a line using the closed-form solution
+* Plot the regression result
+
+## Features
+
+* Feature scaling (standardization) for Gradient Descent
+* Automatic convergence detection using loss tolerance
+* Visualization:
+
+  * Loss curve (`losses_gd.png`)
+  * Regression line plot (`line_gd.png` / `line_ols.png`)
+  * Training animation (`animation_gd.gif`)
+* Implements regression metrics:
+
+  * **MSE (Mean Squared Error)**
+  * **R² Score**
+  * **RSS / TSS**
+
+## Data Format
+
+CSV input should be structured as:
 
 ```
-Line of Best Fit: y = 0.0000 + 2.0000x
-R^2: 1.0
+feature1, feature2, ..., target
+val1,     val2,     ..., valY
+...
 ```
 
-## License
+For OLS, only **one feature** is supported.
 
-This project is licensed under the MIT License.
+## Example Output
 
-## Author
+```text
+Best Fit: y = 2.3210 + (0.4213)x0
+MSE: 3.254
+R^2: 0.8912
+```
 
-Farhaan Siddiqui
+Generated files:
+
+* `images/line_gd.png`
+* `images/losses_gd.png`
+* `images/animation_gd.gif`
+
+## TODOs
+
+* [ ] Support multivariate OLS
+* [ ] Add test suite
+* [ ] Add command-line option to disable scaling
+
+## 📄 License
+
+MIT License. Feel free to use and modify.
