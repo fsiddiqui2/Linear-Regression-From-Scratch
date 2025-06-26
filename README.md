@@ -56,8 +56,8 @@ python linreg_gd.py \
 This script will:
 
 * Train a linear model using Gradient Descent
-* Plot the data with the regression line
 * Plot the loss curve over iterations
+* Plot the data with the regression line (if only 1 feature)
 * Create an animation of the learning process (if only 1 feature)
 
 ### 2. Linear Regression via OLS
